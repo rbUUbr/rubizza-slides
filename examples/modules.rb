@@ -5,10 +5,17 @@ module MySuperGreeter
   end
 end
 
-# class that prepends module
+# class that includes module
 class Person
+  include MySuperGreeter
+end
+Person.ancestors # => [Person, MySuperGreeter, ....]
+
+# class that prepends module
+class PersonWithPrepend
   prepend MySuperGreeter
 end
+PersonWithPrepend.ancestors # => [MySuperGreeter, PersonWithPrepend, ....]
 
 # class that extends module
 class StaticPerson
